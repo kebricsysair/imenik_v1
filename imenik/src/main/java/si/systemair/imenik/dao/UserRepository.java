@@ -14,4 +14,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Modifying
     @Query(value = "update User u set u = ?1 where u.id = ?2")
     void putUser(Optional<User> user, Long id);
+    @Query(value = "select u from User u " +
+            "where u.department = IF ((?1 = ''), u.department, ?1) " +
+            "and u.name = IF((?2 = ''), u.name, ?2 ) " +
+            "and u.surname = IF((?3 = ''), u.surname, ?3)")
+    Iterable<User> filterUsersBy(String department, String name, String surname);
 }

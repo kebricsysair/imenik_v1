@@ -1,9 +1,6 @@
 package si.systemair.imenik.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +30,7 @@ public class User {
     @Getter @Setter
     private Integer postcode;
     @Getter @Setter
+    @Enumerated(EnumType.STRING)
     private Oddelek department;
 
     public User() {

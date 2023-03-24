@@ -37,6 +37,19 @@ public class UserController {
         userDao.deleteById(id);
     }
 
+    @GetMapping("/filter")
+    public Iterable<User> returnFilteredUsers(
+            @RequestParam("department") String department,
+            @RequestParam("name") String name,
+            @RequestParam("surname") String surname
+    ){
+        System.out.println(userDao.filterUsersBy(department, name, surname));
+        return userDao.filterUsersBy(department, name, surname);
+    }
+
+    /*
+    nesi na frontend -urejanje naredi, da imas v input oknih ze vrednosti
+     */
     @PutMapping("/private/put/user/{id}")
     public void putUser(@PathVariable("id") Long id, @RequestBody User user){
         Optional<User> oldUser = userDao.findById(id);
