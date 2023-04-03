@@ -52,12 +52,15 @@ public class UserController {
      */
     @PutMapping("/private/put/user/{id}")
     public void putUser(@PathVariable("id") Long id, @RequestBody User user){
+        /*
         Optional<User> oldUser = userDao.findById(id);
         System.out.println(user);
         if(oldUser == null){
             System.out.printf("Error. User does not exist.");
             return;
         }
+        userDao.updateUser(Optional.ofNullable(user), id);
+
         try{
             if(user.getName() != null) oldUser.orElseThrow().setName(user.getName());
             if(user.getSurname() != null) oldUser.orElseThrow().setSurname(user.getSurname());
@@ -72,5 +75,7 @@ public class UserController {
             e.printStackTrace();
         }
         userDao.putUser(oldUser, oldUser.orElseThrow().getId());
+
+         */
     }
 }
