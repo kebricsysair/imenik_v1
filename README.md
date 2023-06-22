@@ -1,2 +1,2 @@
 # imenik_v1
-Imenik backend.
+Java spring dictionary application. It run's on localhost 8080.
