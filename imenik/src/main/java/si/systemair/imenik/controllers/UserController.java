@@ -3,6 +3,7 @@ package si.systemair.imenik.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import si.systemair.imenik.dao.UserRepository;
+import si.systemair.imenik.models.Oddelek;
 import si.systemair.imenik.models.User;
 
 import java.util.NoSuchElementException;
@@ -16,7 +17,7 @@ public class UserController {
     private UserRepository userDao;
     @GetMapping("/")
     public Iterable<User> getAllUsers(){
-        return userDao.findAll();
+        return userDao.getAllUsers();
     }
     @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable("id") Long id){
@@ -41,10 +42,18 @@ public class UserController {
     public Iterable<User> returnFilteredUsers(
             @RequestParam("department") String department,
             @RequestParam("name") String name,
-            @RequestParam("surname") String surname
+            @RequestParam("surname") String surname,
+            @RequestParam("postCode") Integer postCode
     ){
-        System.out.println(userDao.filterUsersBy(department, name, surname));
-        return userDao.filterUsersBy(department, name, surname);
+        System.out.println(userDao.filterUsersBy(department, name, surname, postCode));
+
+        Iterable<User> filteredUsers = userDao.filterUsersBy(department, name, surname, postCode);
+
+        return userDao.filterUsersBy(department, name, surname, postCode);
+    }
+    @GetMapping("/departments")
+    public Iterable<String> getAllDepartments(){
+        return userDao.getAllDepartments();
     }
 
     /*
